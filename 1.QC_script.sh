@@ -11,7 +11,7 @@ module load parallel/20250722-GCCcore-14.2.0
 # working folder: /scratch/brussel/vo/000/bvo00026/vsc10841/Mapping_RNAseq_heps_mono
 cd /scratch/brussel/vo/000/bvo00026/vsc10841/Mapping_RNAseq_heps_mono
 mkdir ./QC_RAW/
-max_jobs=16
+max_jobs=4
 
 for i in /scratch/brussel/vo/000/bvo00026/vsc10841/RNAseq_heps_20260327/*.fastq.gz
 do
