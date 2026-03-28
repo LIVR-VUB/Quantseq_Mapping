@@ -1,12 +1,15 @@
 #!/bin/sh
+#SBATCH --mem-per-cpu=1g
+#SBATCH --time=07:00:00
+#SBATCH --cpus-per-task=8
 #SBATCH --job-name=Trimmomatic
 
 # setup job environment
 module load Java/17.0.15
 module load Trimmomatic
-#  working folder: /scratch/brussel/108/vsc10841/RHome
-
-INPUT_DIR="./Data_monocyte_infiltration"
+#  working folder: /scratch/brussel/vo/000/bvo00026/vsc10841/Mapping_RNAseq_heps_mono
+mkdir ./Trimmomatic/
+INPUT_DIR="/scratch/brussel/vo/000/bvo00026/vsc10841/RNAseq_heps_20260327"
 OUTPUT_DIR="Trimmomatic"
 
 for r1_file in ${INPUT_DIR}/*_R1_001.fastq.gz
@@ -16,7 +19,7 @@ for r1_file in ${INPUT_DIR}/*_R1_001.fastq.gz
      base_name=${filename%_R1_001.fastq.gz}
      r2_file="${INPUT_DIR}/${base_name}_R2_001.fastq.gz"
     
-     java -jar $EBROOTTRIMMOMATIC/trimmomatic-0.40.jar PE \
+     java -jar $EBROOTTRIMMOMATIC/trimmomatic-0.40.jar PE -threads 4 \
      "$r1_file" "$r2_file" \
      "${OUTPUT_DIR}/cutadapt_${base_name}_R1.fastq.gz" \
      "${OUTPUT_DIR}/cutadapt_${base_name}_R1_unpaired.fastq.gz" \
