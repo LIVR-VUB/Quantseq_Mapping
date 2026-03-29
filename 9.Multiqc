@@ -1,0 +1,7 @@
+#!/bin/bash
+
+module load MultiQC/1.28-foss-2024a
+
+# enter working dir
+# it takes few seconds, no need to submit jobs
+multiqc .
